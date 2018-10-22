@@ -96,6 +96,24 @@ client.on('guildMemberRemove', Sal => { //By Salto7#4595
   });
     });  
   
+client.on('guildMemberAdd', Sal => { //By Salto7#4595
+    var embed = new Discord.RichEmbed()
+    .setAuthor(Sal.user.username, Sal.user.avatarURL)
+    .setThumbnail(Sal.user.avatarURL)
+    .setImage('https://cdn.pg.sa/sx2CpIXYCe.png') //هنا حط الصوره الي تبيها
+    .setTitle('عضو جديد!')
+    .setDescription('مرحبا بك بالسيرفر')
+    .addField('``ايدي العضو``:',"" +  Sal.user.id, true)
+    .addField('``تاق العضو``', Sal.user.discriminator, true)
+    .addField('``تم الانشاء في``', Sal.user.createdAt, true)
+    .addField(' 👤  انت رقم',`**[ ${Sal.guild.memberCount} ]**`,true)
+    .setColor('RANDOM')
+    .setFooter(Sal.guild.name, Sal.guild.iconURL, true)
+    var channel =Sal.guild.channels.find('name', 'welcome') //the-space
+    if (!channel) return;
+    channel.send({embed : embed});
+    });
+
 
 client.on("message", message => {
              
@@ -141,6 +159,12 @@ client.user.setGame(`By:Dexter|$help`,"http://twitch.tv/S-F")
 client.user.setStatus("dnd")
 });
 
+client.on("ready", () => {
+    client.user.setGame("on " + client.users.size + " users")
+}).on("guildCreate", () => {
+    client.user.setGame("on " + client.users.size + " users")
+}).on("guildDelete", () => {
+    client.user.setGame("on " + client.users.size + " users")
+})
 
-
-client.login("");
+client.login(process.env.BOT_TOKEN);

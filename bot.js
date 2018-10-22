@@ -143,4 +143,4 @@ client.user.setStatus("dnd")
 
 
 
-client.login("NDM4MDcyNzgyNTI2NjExNDU2.DqtxQg.ruJYPdlwT9EsMzDwoahWjWt33RI");
+client.login("");
